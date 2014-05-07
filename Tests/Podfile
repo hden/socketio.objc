@@ -1,0 +1,15 @@
+xcodeproj 'SocketIO Tests'
+workspace '../SocketIO.objc'
+
+def import_pods
+  pod 'OCMock',  '~> 2.1.1'
+  pod 'Expecta', '~> 0.2.1'
+  pod 'Specta',  '~> 0.2.1'
+  pod 'SocketIO.objc', :path => '../'
+end
+
+target :ios do
+  platform :ios, '7.0'
+  link_with 'iOS Tests'
+  import_pods
+end

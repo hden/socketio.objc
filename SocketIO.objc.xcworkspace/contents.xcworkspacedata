@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:SocketIO.objc"
+      name = "SocketIO.objc">
+      <FileRef
+         location = "group:SocketIO.h">
+      </FileRef>
+      <FileRef
+         location = "group:SocketIO.m">
+      </FileRef>
+      <FileRef
+         location = "group:SocketIOParser.h">
+      </FileRef>
+      <FileRef
+         location = "group:SocketIOParser.m">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOParser.h">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOParser.m">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOClient.h">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOClient.m">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:Tests/SocketIO Tests.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Tests/Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

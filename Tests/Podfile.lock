@@ -1,0 +1,30 @@
+PODS:
+  - Expecta (0.2.4)
+  - OCMock (2.1.1)
+  - socket.IO (0.5.2):
+    - SocketRocket (~> 0.2)
+  - SocketIO.objc (0.0.1):
+    - socket.IO (~> 0.5)
+    - SocketRocket (~> 0.3)
+  - SocketRocket (0.3.1-beta2)
+  - Specta (0.2.1)
+
+DEPENDENCIES:
+  - Expecta (~> 0.2.1)
+  - OCMock (~> 2.1.1)
+  - SocketIO.objc (from `../`)
+  - Specta (~> 0.2.1)
+
+EXTERNAL SOURCES:
+  SocketIO.objc:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Expecta: 5c147dedfea5fbcf773995f7e65020abcc936ce5
+  OCMock: 4320c8b003c01f9718e69453690228298b9614b5
+  socket.IO: 10f35e5bb4c6d272f652221c63eae9a3a82d0b0e
+  SocketIO.objc: 459d942df26f749a31e4e5e4c31daf04a79cf813
+  SocketRocket: 7ac946bcce46287a791dfff3c1f8daa692821dae
+  Specta: 2d06220591110c6d9757d8be8ecf8e63aa40dc2a
+
+COCOAPODS: 0.32.1
