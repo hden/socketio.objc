@@ -28,6 +28,12 @@
       <FileRef
          location = "group:EngineIOClient.m">
       </FileRef>
+      <FileRef
+         location = "group:SocketIOPacket.h">
+      </FileRef>
+      <FileRef
+         location = "group:SocketIOPacket.m">
+      </FileRef>
    </Group>
    <FileRef
       location = "group:Tests/SocketIO Tests.xcodeproj">

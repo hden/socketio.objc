@@ -12,6 +12,7 @@
 		BE5E8F3919167441003C1763 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5E8F3819167441003C1763 /* UIKit.framework */; };
 		BE5E8F3F19167441003C1763 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE5E8F3D19167441003C1763 /* InfoPlist.strings */; };
 		BE5E8F49191963E6003C1763 /* EngineIOParser_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5E8F48191963E6003C1763 /* EngineIOParser_Test.m */; };
+		BE983E95191A800A00939C75 /* SocketIOParser_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = BE983E94191A800A00939C75 /* SocketIOParser_Test.m */; };
 		D7DFCDF745404619831A5971 /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC7F91AE6D742D8AC65CE52 /* libPods-ios.a */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		BE5E8F3E19167441003C1763 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BE5E8F4219167441003C1763 /* iOS Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS Tests-Prefix.pch"; sourceTree = "<group>"; };
 		BE5E8F48191963E6003C1763 /* EngineIOParser_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineIOParser_Test.m; sourceTree = "<group>"; };
+		BE983E94191A800A00939C75 /* SocketIOParser_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOParser_Test.m; sourceTree = "<group>"; };
 		EE118E1F811D467BBEBF4E64 /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				BE5E8F48191963E6003C1763 /* EngineIOParser_Test.m */,
+				BE983E94191A800A00939C75 /* SocketIOParser_Test.m */,
 				BE5E8F3B19167441003C1763 /* Supporting Files */,
 			);
 			path = "iOS Tests";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE5E8F49191963E6003C1763 /* EngineIOParser_Test.m in Sources */,
+				BE983E95191A800A00939C75 /* SocketIOParser_Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

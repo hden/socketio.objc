@@ -1,5 +1,5 @@
 //
-//  SocketIOParser.h
+//  SocketIOPacket.h
 //  
 //
 //  Created by Hao-kang Den on 5/7/14.
@@ -17,9 +17,16 @@ typedef enum {
     , SocketIOPacketTypeBinaryEvent = 5
 } SocketIOPacketTypes;
 
-@interface SocketIOParser : NSObject
+@interface SocketIOPacket : NSObject
 
-+ (NSArray *) packetTypes;
-+ (NSDictionary *) decodeString:(NSString *)str;
+@property (nonatomic) SocketIOPacketTypes type;
+@property (nonatomic) NSArray *data;
+@property (nonatomic) id attachments;
+@property (nonatomic) NSString *nsp;
+@property (nonatomic) NSNumber *id;
+
++ (NSArray *) types;
+- (BOOL) isEqualToPacket:(SocketIOPacket *)packet;
+- (BOOL) isEqual:(id)object;
 
 @end
