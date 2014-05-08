@@ -26,12 +26,12 @@
             ];
 }
 
-+ (NSDictionary *) error
++ (EngineIOPacket *) error
 {
-    return @{
-             @"type": @"error"
-           , @"data": @"parser error"
-            };
+    EngineIOPacket *err = [[EngineIOPacket alloc] init];
+    err.type = EngineIOPacketTypeError;
+    err.data = @"parser error";
+    return err;
 }
 
 # pragma mark -
@@ -74,18 +74,13 @@
  * @api private
  */
 
-+ (NSString *) encodePacket:(NSDictionary *)packet
++ (NSString *) encodePacket:(EngineIOPacket *)packet
 {
-    NSArray *packetslist     = [EngineIOParser packetslist];
-    NSString *typeName       = (NSString *)packet[@"type"];
-    EngineIOPacketTypes type = (EngineIOPacketTypes)[packetslist indexOfObject:typeName];
-    NSString *encoded        = [NSString stringWithFormat:@"%d", type];
-    
-    if (packet[@"data"]) {
-        encoded = [encoded stringByAppendingString:packet[@"data"]];
+    if (packet.data != nil) {
+        return [NSString stringWithFormat:@"%d%@", packet.type, packet.data];
     }
     
-    return encoded;
+    return [NSString stringWithFormat:@"%d", packet.type];
 }
 
 /**
@@ -95,27 +90,52 @@
  * @api private
  */
 
-+ (NSDictionary *) decodePacket:(NSString *)data
++ (EngineIOPacket *) decodePacket:(NSString *)data
 {
-    NSArray *packetslist    = [EngineIOParser packetslist];
-    NSString *type          = [data substringToIndex:1];
+    EngineIOPacket *p    = [[EngineIOPacket alloc] init];
+    NSScanner *scanner   = [NSScanner scannerWithString:data];
+    scanner.scanLocation = 1;
     
-    BOOL isNumeric   = [EngineIOParser isNumeric:type];
-    BOOL isValidType = type.intValue < packetslist.count;
+    // look up type
+    NSArray *packetsTypes    = [self packetslist];
+    NSString *typeStr        = [data substringToIndex:1];
+    EngineIOPacketTypes type = typeStr.intValue;
+    p.type = type;
+    
+    BOOL isNumeric   = [self isNumeric:typeStr];
+    BOOL isValidType = p.type < packetsTypes.count;
     
     if (!(isNumeric && isValidType)) {
-        return [EngineIOParser error];
+        return [self error];
     }
-    
-    NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
-    d[@"type"] = [EngineIOParser packetslist][type.intValue];
     
     if (data.length > 1) {
-        d[@"data"] = [data substringFromIndex:1];
+        p.data = [data substringFromIndex:1];
     }
     
-    return d;
+    return p;
 }
+
+//{
+//    NSArray *packetslist    = [EngineIOParser packetslist];
+//    NSString *type          = [data substringToIndex:1];
+//    
+//    BOOL isNumeric   = [EngineIOParser isNumeric:type];
+//    BOOL isValidType = type.intValue < packetslist.count;
+//    
+//    if (!(isNumeric && isValidType)) {
+//        return [EngineIOParser error];
+//    }
+//    
+//    NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
+//    d[@"type"] = [EngineIOParser packetslist][type.intValue];
+//    
+//    if (data.length > 1) {
+//        d[@"data"] = [data substringFromIndex:1];
+//    }
+//    
+//    return d;
+//}
 
 /**
  * Encodes multiple messages (payload).
@@ -141,7 +161,7 @@
     
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
-    for (NSDictionary *packet in packets) {
+    for (EngineIOPacket *packet in packets) {
         NSString *encoded = [EngineIOParser encodePacket:packet];
         encoded = [NSString stringWithFormat:@"%u:%@", (unsigned)encoded.length, encoded];
         [results addObject:encoded];
@@ -188,7 +208,7 @@
     NSString *tail  = [body substringFromIndex:idx];
     
     if (![frame isEqualToString:@""]) {
-        NSDictionary *packet = [EngineIOParser decodePacket:frame];
+        EngineIOPacket *packet = [EngineIOParser decodePacket:frame];
         if ([packet isEqual:[EngineIOParser error]]) {
             // earily return following the original engine.io-parser
             return @[packet];

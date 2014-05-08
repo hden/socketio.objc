@@ -17,6 +17,12 @@
          location = "group:SocketIOParser.m">
       </FileRef>
       <FileRef
+         location = "group:SocketIOPacket.h">
+      </FileRef>
+      <FileRef
+         location = "group:SocketIOPacket.m">
+      </FileRef>
+      <FileRef
          location = "group:EngineIOParser.h">
       </FileRef>
       <FileRef
@@ -29,10 +35,10 @@
          location = "group:EngineIOClient.m">
       </FileRef>
       <FileRef
-         location = "group:SocketIOPacket.h">
+         location = "group:EngineIOPacket.h">
       </FileRef>
       <FileRef
-         location = "group:SocketIOPacket.m">
+         location = "group:EngineIOPacket.m">
       </FileRef>
    </Group>
    <FileRef

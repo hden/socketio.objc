@@ -18,69 +18,69 @@ SpecBegin(EngineIOParser)
 describe(@"packets", ^{
     describe(@"encoding and decoding", ^{
         it(@"should allow no data", ^{
-            NSDictionary *packet = @{@"type": @"message"};
+            EngineIOPacket *packet = [[EngineIOPacket alloc] init];
+            packet.type            = EngineIOPacketTypeMessage;
             expect([EngineIOParser decodePacket:[EngineIOParser encodePacket:packet]]).to.equal(packet);
         });
         
         it(@"should encode an open packet", ^{
-            NSDictionary *packet = @{
-                                     @"type": @"open"
-                                   , @"data": @"{\"some\":\"json\"}"
-                                    };
+            EngineIOPacket *packet = [[EngineIOPacket alloc] init];
+            packet.type = EngineIOPacketTypeOpen;
+            packet.data = @"{\"some\":\"json\"}";
             expect([EngineIOParser decodePacket:[EngineIOParser encodePacket:packet]]).to.equal(packet);
         });
         
         it(@"should encode a close packet", ^{
-            NSDictionary *packet = @{@"type": @"close"};
+            EngineIOPacket *packet = [[EngineIOPacket alloc] init];
+            packet.type = EngineIOPacketTypeClose;
             expect([EngineIOParser decodePacket:[EngineIOParser encodePacket:packet]]).to.equal(packet);
         });
         
         it(@"should encode an ping packet", ^{
-            NSDictionary *packet = @{
-                                     @"type": @"ping"
-                                   , @"data": @"1"
-                                    };
+            EngineIOPacket *packet = [[EngineIOPacket alloc] init];
+            packet.type = EngineIOPacketTypePing;
+            packet.data = @"1";
             expect([EngineIOParser decodePacket:[EngineIOParser encodePacket:packet]]).to.equal(packet);
         });
         
         it(@"should encode an pong packet", ^{
-            NSDictionary *packet = @{
-                                     @"type": @"pong"
-                                   , @"data": @"1"
-                                    };
+            EngineIOPacket *packet = [[EngineIOPacket alloc] init];
+            packet.type = EngineIOPacketTypePong;
+            packet.data = @"1";
             expect([EngineIOParser decodePacket:[EngineIOParser encodePacket:packet]]).to.equal(packet);
         });
         
         it(@"should encode an message packet", ^{
-            NSDictionary *packet = @{
-                                     @"type": @"message"
-                                   , @"data": @"aaa"
-                                    };
+            EngineIOPacket *packet = [[EngineIOPacket alloc] init];
+            packet.type = EngineIOPacketTypeMessage;
+            packet.data = @"aaa";
             expect([EngineIOParser decodePacket:[EngineIOParser encodePacket:packet]]).to.equal(packet);
         });
         
         xit(@"should encode a message packet coercing to string");
         
         it(@"should encode an upgrade packet", ^{
-            NSDictionary *packet = @{@"type": @"upgrade"};
+            EngineIOPacket *packet = [[EngineIOPacket alloc] init];
+            packet.type = EngineIOPacketTypeUpgrade;
             expect([EngineIOParser decodePacket:[EngineIOParser encodePacket:packet]]).to.equal(packet);
         });
         
         it(@"should match the encoding format", ^{
-            NSDictionary *packet = @{
-                                     @"type": @"message"
-                                   , @"data": @"test"
-                                    };
-            expect([EngineIOParser encodePacket:packet]).to.equal(@"4test");
-            expect([EngineIOParser encodePacket:[NSDictionary dictionaryWithObject:@"message" forKey:@"type"]]).to.equal(@"4");
+            EngineIOPacket *packet1 = [[EngineIOPacket alloc] init];
+            packet1.type = EngineIOPacketTypeMessage;
+            packet1.data = @"test";
+            expect([EngineIOParser encodePacket:packet1]).to.equal(@"4test");
+            
+            EngineIOPacket *packet2 = [[EngineIOPacket alloc] init];
+            packet2.type = EngineIOPacketTypeMessage;
+            expect([EngineIOParser encodePacket:packet2]).to.equal(@"4");
         });
     });
     
     describe(@"decoding error handing", ^{
-        NSDictionary *err = @{
-                              @"type": @"error"
-                            , @"data": @"parser error"
-                             };
+        EngineIOPacket *err = [[EngineIOPacket alloc] init];
+        err.type = EngineIOPacketTypeError;
+        err.data = @"parser error";
         
         it(@"should disallow bad format", ^{
             expect([EngineIOParser decodePacket:@"::"]).to.equal(err);
@@ -95,9 +95,15 @@ describe(@"packets", ^{
 describe(@"payloads", ^{
     describe(@"encoding and decoding", ^{
         it(@"should encode/decode packets", ^{
-            NSArray *payload = @[@{@"type": @"message", @"data": @"a"}];
+            EngineIOPacket *packet1 = [[EngineIOPacket alloc] init];
+            packet1.type = EngineIOPacketTypeMessage;
+            packet1.data = @"a";
+            NSArray *payload = @[packet1];
             expect([EngineIOParser decodePayload:[EngineIOParser encodePayload:payload]]).to.equal(payload);
-            payload = @[@{@"type": @"message", @"data": @"a"}, @{@"type": @"ping"}];
+            
+            EngineIOPacket *packet2 = [[EngineIOPacket alloc] init];
+            packet2.type = EngineIOPacketTypePing;
+            payload = @[packet1, packet2];
             expect([EngineIOParser decodePayload:[EngineIOParser encodePayload:payload]]).to.equal(payload);
         });
         
@@ -108,7 +114,10 @@ describe(@"payloads", ^{
     });
     
     describe(@"decoding error handling", ^{
-        NSDictionary *err = @{@"type": @"error", @"data": @"parser error"};
+        EngineIOPacket *err = [[EngineIOPacket alloc] init];
+        err.type = EngineIOPacketTypeError;
+        err.data = @"parser error";
+        
         it(@"should err on bad payload format", ^{
             expect([EngineIOParser decodePayload:@"1!"]).to.equal(@[err]);
             expect([EngineIOParser decodePayload:@""]).to.equal(@[err]);
