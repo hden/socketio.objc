@@ -40,6 +40,30 @@
       <FileRef
          location = "group:EngineIOPacket.m">
       </FileRef>
+      <FileRef
+         location = "group:EngineIOTransport.h">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOTransport.m">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOTransportPolling.h">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOTransportPolling.m">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOTransportOptions.h">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOTransportOptions.m">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIORequest.h">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIORequest.m">
+      </FileRef>
    </Group>
    <FileRef
       location = "group:Tests/SocketIO Tests.xcodeproj">

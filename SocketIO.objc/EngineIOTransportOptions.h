@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EngineIOTransportOptions : NSObject
+@interface EngineIOTransportOptions : NSObject <NSCopying>
 
 @property (nonatomic) NSDictionary *query;
 @property (nonatomic) NSString *method;
@@ -16,7 +16,7 @@
 @property (nonatomic) BOOL isBinary;
 @property (nonatomic, readonly) NSURLComponents *uri;
 
-- (id) initWithString:(NSString *)URLString;
+- (id) initWithURL:(NSString *)URL;
 - (void) querySetValue:(id)object forKey:(id<NSCopying>)key;
 - (void) queryRemoveValueForKey:(id<NSCopying>)key;
 - (NSURL *)URL;

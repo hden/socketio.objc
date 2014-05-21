@@ -27,4 +27,5 @@ Pod::Spec.new do |s|
   s.public_header_files = "SocketIO.objc/**/*.h"
   s.dependency 'SocketRocket', '~> 0.3'
   s.dependency 'socket.IO', '~> 0.5'
+  s.dependency 'Emitter', '~> 0.0'
 end

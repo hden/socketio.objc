@@ -36,6 +36,7 @@
     
     if (_options.data) {
         request.HTTPBody = _options.data;
+        NSLog(@"writing data %@", [[NSString alloc] initWithData:_options.data encoding:NSUTF8StringEncoding]);
     }
     
     NSURLSessionDataTask *task = [_session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

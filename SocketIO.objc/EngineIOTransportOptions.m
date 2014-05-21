@@ -10,16 +10,25 @@
 
 @implementation EngineIOTransportOptions
 
-- (id) initWithString:(NSString *)URLString
+- (id) initWithURL:(NSString *)URL
 {
     self = [super init];
     if (self) {
-        _uri          = [[NSURLComponents alloc] initWithString:URLString];
+        _uri          = [[NSURLComponents alloc] initWithString:URL ? URL : @"http://localhost:8000/socket.io/"];
         self.method   = @"GET";
         self.query    = @{@"b64":@"0"};
         self.isBinary = false;
     }
     return self;
+}
+
+- (id) copyWithZone:(NSZone *)zone
+{
+    EngineIOTransportOptions *copy = [[EngineIOTransportOptions allocWithZone:zone] initWithURL:self.URL.absoluteString];
+    copy.method   = self.method;
+    copy.query    = self.query;
+    copy.isBinary = self.isBinary;
+    return copy;
 }
 
 - (NSString *) queryString
