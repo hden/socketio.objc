@@ -18,17 +18,21 @@
 SpecBegin(EngineIOTransportPolling)
 
 describe(@"polling", ^{
+    setAsyncSpecTimeout(20);
     it(@"should work", ^AsyncBlock {
         EngineIOTransportOptions *opt       = [[EngineIOTransportOptions alloc] initWithURL:nil];
-        [opt querySetValue:@"polling" forKey:@"transport"];
         EngineIOTransportPolling *transport = [[EngineIOTransportPolling alloc] initWithOptions:opt];
         [transport open];
         [transport on:@"error" listener:^(NSError *error) {
             @throw error;
         }];
-        [transport on:@"open" listener:^{
-            [transport on:@"close" listener:done];
-            [transport close];
+        [transport once:@"open" listener:^{
+            [transport once:@"packet" listener:^(EngineIOPacket *packet) {
+                NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[packet.data dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+                [transport.options querySetValue:data[@"sid"] forKey:@"sid"];
+                [transport once:@"close" listener:done];
+                [transport close];
+            }];
         }];
     });
 });

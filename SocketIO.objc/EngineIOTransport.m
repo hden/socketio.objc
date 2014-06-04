@@ -17,6 +17,7 @@
     if (self) {
         _options = options;
         this     = self;
+        [options querySetValue:self.name forKey:@"transport"];
     }
     return self;
 }

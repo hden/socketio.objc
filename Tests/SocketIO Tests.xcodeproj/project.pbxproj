@@ -14,6 +14,7 @@
 		BE5E8F49191963E6003C1763 /* EngineIOParser_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5E8F48191963E6003C1763 /* EngineIOParser_Test.m */; };
 		BE68FFC7192A43A7001EB463 /* EngineIORequest_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68FFC6192A43A7001EB463 /* EngineIORequest_Test.m */; };
 		BE68FFC9192CDDFE001EB463 /* EngineIOTransportPolling_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68FFC8192CDDFE001EB463 /* EngineIOTransportPolling_Test.m */; };
+		BE85B58D193CC48A003AE43C /* EngineIOClient_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = BE85B58C193CC48A003AE43C /* EngineIOClient_Test.m */; };
 		BE983E95191A800A00939C75 /* SocketIOParser_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = BE983E94191A800A00939C75 /* SocketIOParser_Test.m */; };
 		D7DFCDF745404619831A5971 /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC7F91AE6D742D8AC65CE52 /* libPods-ios.a */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,7 @@
 		BE5E8F48191963E6003C1763 /* EngineIOParser_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineIOParser_Test.m; sourceTree = "<group>"; };
 		BE68FFC6192A43A7001EB463 /* EngineIORequest_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineIORequest_Test.m; sourceTree = "<group>"; };
 		BE68FFC8192CDDFE001EB463 /* EngineIOTransportPolling_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineIOTransportPolling_Test.m; sourceTree = "<group>"; };
+		BE85B58C193CC48A003AE43C /* EngineIOClient_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineIOClient_Test.m; sourceTree = "<group>"; };
 		BE983E94191A800A00939C75 /* SocketIOParser_Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOParser_Test.m; sourceTree = "<group>"; };
 		EE118E1F811D467BBEBF4E64 /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 				BE5E8F48191963E6003C1763 /* EngineIOParser_Test.m */,
 				BE983E94191A800A00939C75 /* SocketIOParser_Test.m */,
 				BE68FFC6192A43A7001EB463 /* EngineIORequest_Test.m */,
+				BE85B58C193CC48A003AE43C /* EngineIOClient_Test.m */,
 				BE68FFC8192CDDFE001EB463 /* EngineIOTransportPolling_Test.m */,
 				BE5E8F3B19167441003C1763 /* Supporting Files */,
 			);
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE85B58D193CC48A003AE43C /* EngineIOClient_Test.m in Sources */,
 				BE5E8F49191963E6003C1763 /* EngineIOParser_Test.m in Sources */,
 				BE68FFC9192CDDFE001EB463 /* EngineIOTransportPolling_Test.m in Sources */,
 				BE68FFC7192A43A7001EB463 /* EngineIORequest_Test.m in Sources */,

@@ -120,6 +120,7 @@
     };
     
     // decode payload
+//    data          = [[NSData alloc] initWithBase64EncodedData:data options:NSDataBase64DecodingIgnoreUnknownCharacters];
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *list = [EngineIOParser decodePayload:str];
     for (EngineIOPacket *p in list) {
@@ -195,7 +196,7 @@
 
 - (NSURL *) uri
 {
-    return _options.URL;
+    return self.options.URL;
 }
 
 # pragma mark -
@@ -204,8 +205,9 @@
 - (EngineIORequest *) requestWithOptions:(EngineIOTransportOptions *)options
 {
     if (options == nil) {
-        options = _options.copy;
+        options = self.options.copy;
     }
+    NSLog(@"made a %@ request for URL: %@", options.method, options.URL.absoluteString);
     return [[EngineIORequest alloc] initWithOptions:options];
 }
 
@@ -220,7 +222,7 @@
 - (void) doWrite:(id)data withCallback:(void (^)())fn
 {
     NSData *d;
-    EngineIOTransportOptions *opt = _options.copy;
+    EngineIOTransportOptions *opt = self.options.copy;
     
     if ([data isKindOfClass:[NSString class]]) {
         d = [data dataUsingEncoding:NSUTF8StringEncoding];
@@ -254,10 +256,10 @@
 - (void) doPoll
 {
     EngineIORequest *req = [self requestWithOptions:nil];
-    [req on:@"data" listener:^(NSData *data) {
+    [req once:@"data" listener:^(NSData *data) {
         [this onData:data];
     }];
-    [req on:@"error" listener:^(NSError *error) {
+    [req once:@"error" listener:^(NSError *error) {
         [this onError:error withDescription:@"xhr poll error"];
     }];
 }

@@ -14,10 +14,10 @@
 {
     self = [super init];
     if (self) {
-        _uri          = [[NSURLComponents alloc] initWithString:URL ? URL : @"http://localhost:8000/socket.io/"];
-        self.method   = @"GET";
-        self.query    = @{@"b64":@"0"};
-        self.isBinary = false;
+        _uri      = [[NSURLComponents alloc] initWithString:URL != nil ? URL : @"http://localhost:8000/engine.io/"];
+        _method   = @"GET";
+        _query    = @{@"b64":@"0"};
+        _isBinary = false;
     }
     return self;
 }
@@ -54,8 +54,10 @@
 
 - (void) setQuery:(NSDictionary *)query
 {
-    _query = query;
-    self.uri.query = [self queryString];
+    if (query != nil) {
+        _query = query;
+        self.uri.query = [self queryString];
+    }
 }
 
 - (void) querySetValue:(id)object forKey:(id<NSCopying>)key

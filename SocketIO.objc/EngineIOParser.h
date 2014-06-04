@@ -11,6 +11,7 @@
 
 @interface EngineIOParser : NSObject
 
++ (int) protocal;
 + (NSArray *) packetslist;
 + (EngineIOPacket *) error;
 + (NSString *) encodePacket:(EngineIOPacket *)packet;

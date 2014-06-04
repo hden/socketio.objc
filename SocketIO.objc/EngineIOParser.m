@@ -13,6 +13,11 @@
 # pragma mark -
 # pragma mark pseudo constants
 
++ (int) protocal
+{
+    return 3;
+}
+
 + (NSArray *) packetslist
 {
     return @[

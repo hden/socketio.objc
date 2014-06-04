@@ -28,11 +28,11 @@ typedef enum {
 @interface EngineIOTransport : NSObject
 {
     __block EngineIOTransportReadyState readyState;
-    EngineIOTransportOptions *_options;
     __block __weak EngineIOTransport *this;
 }
 
 @property (nonatomic) BOOL writable;
+@property (nonatomic) EngineIOTransportOptions *options;
 
 - (id) initWithOptions:(EngineIOTransportOptions *)options;
 - (NSString *)name;

@@ -23,8 +23,8 @@
 
 - (void) create:(BOOL)isBinary
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_options.URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:60.0];
-    request.HTTPMethod = _options.method;
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_options.URL cachePolicy:0 timeoutInterval:60.0];
+    request.HTTPMethod = _options.method != nil ? _options.method : @"GET";
     
     if ([_options.method isEqualToString:@"POST"]) {
         if (isBinary) {
@@ -35,6 +35,7 @@
     }
     
     if (_options.data) {
+//        request.HTTPBody = [_options.data base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
         request.HTTPBody = _options.data;
         NSLog(@"writing data %@", [[NSString alloc] initWithData:_options.data encoding:NSUTF8StringEncoding]);
     }
@@ -57,6 +58,7 @@
 
 - (void) onData:(NSData *)data
 {
+    NSLog(@"request got data %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     [self emit:@"data", data];
     [self onSuccess];
 }

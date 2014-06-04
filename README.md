@@ -17,7 +17,7 @@ Goals / Progress
 ----------------
 
 * [done] engine.io-parser with official test suite
-* engine.io-client with official test suite
+* [almost done] engine.io-client with official test suite
 * [done] socket.io-parser with official test suite
 * socket.io-client with official test suite
 
