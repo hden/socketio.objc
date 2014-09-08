@@ -23,6 +23,24 @@
          location = "group:SocketIOPacket.m">
       </FileRef>
       <FileRef
+         location = "group:SocketIOManager.h">
+      </FileRef>
+      <FileRef
+         location = "group:SocketIOManager.m">
+      </FileRef>
+      <FileRef
+         location = "group:SocketIOSocket.h">
+      </FileRef>
+      <FileRef
+         location = "group:SocketIOSocket.m">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOUtil.h">
+      </FileRef>
+      <FileRef
+         location = "group:EngineIOUtil.m">
+      </FileRef>
+      <FileRef
          location = "group:EngineIOParser.h">
       </FileRef>
       <FileRef

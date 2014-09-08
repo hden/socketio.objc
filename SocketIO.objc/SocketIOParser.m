@@ -46,6 +46,27 @@
 # pragma mark public methods
 
 /**
+ * Encode a packet as a single string if non-binary, or as a
+ * buffer sequence, depending on packet type.
+ *
+ * @param {Object} obj - packet object
+ * @param {Function} callback - function to handle encodings (likely engine.write)
+ * @return Calls callback with Array of encodings
+ * @api public
+ */
+
++ (void) encode:(SocketIOPacket *)packet withCallback:(void (^)(NSArray *encodedPackets))callback
+{
+    NSLog(@"encoding packet");
+    
+    if (packet.type == SocketIOPacketTypeBinaryEvent || packet.type == SocketIOPacketTypeBinaryAck) {
+        // TODO
+    } else {
+        callback(@[[self encodeAsString:packet]]);
+    }
+}
+
+/**
  * Encode packet as string.
  *
  * @param {Object} packet

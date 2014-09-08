@@ -15,6 +15,7 @@ typedef enum {
     , SocketIOPacketTypeAck         = 3
     , SocketIOPacketTypeError       = 4
     , SocketIOPacketTypeBinaryEvent = 5
+    , SocketIOPacketTypeBinaryAck   = 6
 } SocketIOPacketTypes;
 
 @interface SocketIOPacket : NSObject
